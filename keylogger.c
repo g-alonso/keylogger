@@ -76,7 +76,7 @@ int main(int argc, char *argv[])
 			case 'h':
 			case '?':
 			default:
-				fprintf(stderr, "Keylogger V 1.0.0\n\n");
+				fprintf(stderr, "Keylogger V 1.0.1\n\n");
 				fprintf(stderr, "Usage: %s [OPTION]...\n", argv[0]);
 				fprintf(stderr, "  -l, --log-file <file>            write log to FILE (default=stdout)\n");
 				fprintf(stderr, "  -s, --stream <stream-path>       stream to device\n");
